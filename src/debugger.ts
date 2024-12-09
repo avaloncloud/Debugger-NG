@@ -3,15 +3,15 @@ import { DebugEntry } from "./debugger.data";
 
 export class Debugger {
   // 輸出工廠
-  
-
+  private debug!: boolean;
   private entries: DebugEntry[] = [];
   private outputImpl: IDebugOutput;
 
   constructor(
-    private debug: boolean, 
+    debug: boolean, 
     outputImplFactory: () => IDebugOutput
   ) {
+    this.debug = debug; 
     this.outputImpl = outputImplFactory();
   }
 
@@ -19,13 +19,14 @@ export class Debugger {
     this.entries.push(entry);
   }
 
-  async Output() {
-    const filtered = this.debug 
-      ? this.entries
-      : this.entries.filter(e => e.level === DebugLevel.Error);
+  setDebug(debug: boolean) {
+    this.debug = debug;
+  }
 
-    if (filtered.length > 0) {
-      await this.outputImpl.writeEntries(filtered);
+  async Output(): Promise<void> {
+    const hasError = this.entries.some(e => e.level === DebugLevel.Error);
+    if (hasError || this.debug) {
+      await this.outputImpl.writeEntries(this.entries);
     }
 
     // 輸出後清空記錄，避免重複輸出

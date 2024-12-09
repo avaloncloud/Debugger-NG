@@ -1,1 +1,15 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OutputFactory = exports.DebuggerApiAccess = exports.DebuggerConsoleAccess = exports.DebugOutputType = exports.DebugLevel = exports.Debugger = void 0;
+var debugger_1 = require("./debugger");
+Object.defineProperty(exports, "Debugger", { enumerable: true, get: function () { return debugger_1.Debugger; } });
+var debugger_data_1 = require("./debugger.data");
+Object.defineProperty(exports, "DebugLevel", { enumerable: true, get: function () { return debugger_data_1.DebugLevel; } });
+var debugger_data_2 = require("./debugger.data");
+Object.defineProperty(exports, "DebugOutputType", { enumerable: true, get: function () { return debugger_data_2.DebugOutputType; } });
+var debugger_console_access_1 = require("./debugger.console.access");
+Object.defineProperty(exports, "DebuggerConsoleAccess", { enumerable: true, get: function () { return debugger_console_access_1.DebuggerConsoleAccess; } });
+var debugger_api_access_1 = require("./debugger.api.access");
+Object.defineProperty(exports, "DebuggerApiAccess", { enumerable: true, get: function () { return debugger_api_access_1.DebuggerApiAccess; } });
+var debugger_factory_1 = require("./debugger.factory");
+Object.defineProperty(exports, "OutputFactory", { enumerable: true, get: function () { return debugger_factory_1.OutputFactory; } });
